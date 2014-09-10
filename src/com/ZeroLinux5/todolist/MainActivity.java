@@ -21,7 +21,6 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Get references to ui elements
 		ListView myListView = (ListView) findViewById(R.id.myListView);
-		final EditText myEditText = (EditText) findViewById(R.id.myEditText);
 		
 		//Create the array list of to do items
 		final ArrayList<String> toDoItems = new ArrayList<String>();
@@ -35,23 +34,6 @@ public class MainActivity extends ActionBarActivity {
 		
 		//Bind the adapter to the list view
 		myListView.setAdapter(aa);
-		
-		myEditText.setOnKeyListener(new View.OnKeyListener() {
-			
-			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
-				if(event.getAction() == KeyEvent.ACTION_DOWN){
-					if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER) ||
-						(keyCode == KeyEvent.KEYCODE_ENTER)) {
-						toDoItems.add(0, myEditText.getText().toString());
-						aa.notifyDataSetChanged();
-						myEditText.setText("");
-						return true;
-					}
-				}
-				return false;
-			}
-		});
 	}
 
 	@Override
