@@ -2,17 +2,17 @@ package com.ZeroLinux5.todolist;
 
 import java.util.ArrayList;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements
+		NewItemFragment.OnNewItemAddedListener{
+	private ArrayAdapter<String> aa;
+	private ArrayList<String> toDoItems;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,20 +20,21 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		
 		//Get references to ui elements
-		ListView myListView = (ListView) findViewById(R.id.myListView);
+		FragmentManager fm = getFragmentManager();
+		ToDoListFragment toDoListFragment = (ToDoListFragment) fm.findFragmentById(R.id.TodoListFragment);
 		
-		//Create the array list of to do items
-		final ArrayList<String> toDoItems = new ArrayList<String>();
+		toDoItems = new ArrayList<String>();
 		
-		//create the array adapter to bind the array to the list view
-		final ArrayAdapter<String> aa;
+		// Create the array adapter to bind the array to the listview 
+		aa = new ArrayAdapter<String>(this,
+		android.R.layout.simple_list_item_1, toDoItems);
 		
-		aa = new ArrayAdapter<String> (this, 
-									   android.R.layout.simple_list_item_1,
-									   toDoItems);
-		
-		//Bind the adapter to the list view
-		myListView.setAdapter(aa);
+		//bind the array adapter to the listview
+		toDoListFragment.setListAdapter(aa);
+	}
+	
+	public void onNewItemAdded(String newItem) { 
+		toDoItems.add(newItem); aa.notifyDataSetChanged();
 	}
 
 	@Override

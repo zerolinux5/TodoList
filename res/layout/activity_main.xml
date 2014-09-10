@@ -9,17 +9,17 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ZeroLinux5.todolist.MainActivity" >
-    
-    <EditText
-		android:id="@+id/myEditText"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:hint="@string/addItemHint"
-		android:contentDescription="@string/addItemContentDescription"/> 
-		
-	<ListView
-	android:id="@+id/myListView"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"/>
+
+    <fragment
+        android:id="@+id/NewItemFragment"
+        android:name="com.ZeroLinux5.todolist.NewItemFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <fragment
+        android:id="@+id/TodoListFragment"
+        android:name="com.ZeroLinux5.todolist.ToDoListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
