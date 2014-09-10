@@ -1,9 +1,14 @@
 package com.ZeroLinux5.todolist;
 
-import android.support.v7.app.ActionBarActivity;
+import java.util.ArrayList;
+
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -11,6 +16,23 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//Get references to ui elements
+		ListView myListView = (ListView) findViewById(R.id.myListView);
+		final EditText myEditText = (EditText) findViewById(R.id.myEditText);
+		
+		//Create the array list of to do items
+		final ArrayList<String> toDoItems = new ArrayList<String>();
+		
+		//create the array adapter to bind the array to the list view
+		final ArrayAdapter<String> aa;
+		
+		aa = new ArrayAdapter<String> (this, 
+									   android.R.layout.simple_list_item_1,
+									   toDoItems);
+		
+		//Bind the adapter to the list view
+		myListView.setAdapter(aa);
 	}
 
 	@Override
