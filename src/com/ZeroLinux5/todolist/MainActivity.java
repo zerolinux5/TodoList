@@ -25,9 +25,9 @@ public class MainActivity extends ActionBarActivity implements
 		
 		toDoItems = new ArrayList<String>();
 		
-		// Create the array adapter to bind the array to the listview 
-		aa = new ArrayAdapter<String>(this,
-		android.R.layout.simple_list_item_1, toDoItems);
+		// Create the array adapter to bind the array to the listview
+		int resId = R.layout.todolist_item;
+		aa = new ArrayAdapter<String>(this, resId, toDoItems);
 		
 		//bind the array adapter to the listview
 		toDoListFragment.setListAdapter(aa);
