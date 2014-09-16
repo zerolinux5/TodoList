@@ -11,8 +11,9 @@ import android.widget.ArrayAdapter;
 
 public class MainActivity extends ActionBarActivity implements
 		NewItemFragment.OnNewItemAddedListener{
-	private ArrayAdapter<String> aa;
-	private ArrayList<String> toDoItems;
+	
+	private ArrayList<ToDoItem> todoItems;
+	private ArrayAdapter<ToDoItem> aa;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,18 +24,20 @@ public class MainActivity extends ActionBarActivity implements
 		FragmentManager fm = getFragmentManager();
 		ToDoListFragment toDoListFragment = (ToDoListFragment) fm.findFragmentById(R.id.TodoListFragment);
 		
-		toDoItems = new ArrayList<String>();
+		todoItems = new ArrayList<ToDoItem>();
 		
 		// Create the array adapter to bind the array to the listview
 		int resId = R.layout.todolist_item;
-		aa = new ArrayAdapter<String>(this, resId, toDoItems);
+		aa = new ArrayAdapter<ToDoItem>(this, resId, todoItems);
 		
 		//bind the array adapter to the listview
 		toDoListFragment.setListAdapter(aa);
 	}
 	
 	public void onNewItemAdded(String newItem) { 
-		toDoItems.add(newItem); aa.notifyDataSetChanged();
+		ToDoItem newTodoItem = new ToDoItem(newItem);
+		todoItems.add(0, newTodoItem);
+		aa.notifyDataSetChanged();
 	}
 
 	@Override
