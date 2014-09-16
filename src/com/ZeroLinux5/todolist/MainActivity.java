@@ -7,13 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 
 public class MainActivity extends ActionBarActivity implements
 		NewItemFragment.OnNewItemAddedListener{
 	
 	private ArrayList<ToDoItem> todoItems;
-	private ArrayAdapter<ToDoItem> aa;
+	private ToDoItemAdapter aa;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +27,7 @@ public class MainActivity extends ActionBarActivity implements
 		
 		// Create the array adapter to bind the array to the listview
 		int resId = R.layout.todolist_item;
-		aa = new ArrayAdapter<ToDoItem>(this, resId, todoItems);
+		aa = new ToDoItemAdapter(this, resId, todoItems);
 		
 		//bind the array adapter to the listview
 		toDoListFragment.setListAdapter(aa);
